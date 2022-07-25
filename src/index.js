@@ -64,6 +64,7 @@ class Game extends React.Component {
             moveTracker: new Map(),
             reversedMovesList: false,
             highlightedSquares: [false, false, false, false, false, false, false, false, false],
+            displayRestartButton: false,
         }
     }
 
@@ -86,7 +87,24 @@ class Game extends React.Component {
             isXTurn: !this.state.isXTurn,
             currentlyDisplayedMove: this.state.currentlyDisplayedMove + 1,
             moveTracker: moveTracker,
+            displayRestartButton: true,
         })
+    }
+
+    restart() {
+        this.setState(
+            {
+                values: [
+                    {squares: [null, null, null, null, null, null, null, null, null]},
+                ],
+                isXTurn: true,
+                currentlyDisplayedMove: 0,
+                moveTracker: new Map(),
+                reversedMovesList: false,
+                highlightedSquares: [false, false, false, false, false, false, false, false, false],
+                displayRestartButton: false,
+            }
+        )
     }
 
     checkWinner(board) {
@@ -107,6 +125,10 @@ class Game extends React.Component {
                 return board[a];
             }
         }
+
+        if (board[0] && board[1] && board[2] && board[3] && board[4] && board[5] && board[6] && board[7] && board[8]) {
+            return "T";
+        }
     }
 
     getButtons() {
@@ -124,7 +146,7 @@ class Game extends React.Component {
                 if (move === this.state.currentlyDisplayedMove) {
                     return (
                         <li key = {move}>
-                            <button onClick = {() => this.switchTo(move)}><b>{message}</b></button>
+                            <button class = "timeTravelButton" onClick = {() => this.switchTo(move)}><b>{message}</b></button>
                         </li>
                     );
                 }
@@ -157,16 +179,30 @@ class Game extends React.Component {
         let timeTravelButtons = this.getButtons();
         let statusMessage;
 
-        if(this.checkWinner(currentBoard)) {
+        let winner = this.checkWinner(currentBoard);
+
+        if(winner == "X" || winner == "O") {
             statusMessage = "Congratulations " + this.checkWinner(currentBoard) + ", you win!"
+        } else if (winner == "T") {
+            statusMessage = "Oh no, It's a tie!"
         } else {
             statusMessage = "Next turn: " + (this.state.isXTurn ? "X" : "O");
+        }
+        
+        // Conditionally render restart button
+        let restartButton = null;
+
+        if (this.state.displayRestartButton) {
+            restartButton = (<button id = "restartButton" onClick = {() => this.restart()}>Click to Restart</button>);
         }
 
         return (
             <div id = "contentWrapper">
                 <div></div>
-                <div></div>
+                <div id = "headerGridCell">
+                    <h1>Tic-Tac-Toe</h1>
+                    {restartButton}
+                </div>
                 <div></div>
                 <div></div>
                 <Board 

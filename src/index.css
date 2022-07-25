@@ -1,5 +1,5 @@
 :root {
-    --gradient: radial-gradient(#7a2f2f, #ad5f1a, #8c842a, #265e1f, #1f5e40, #1f565e, #242e75, #4d2475, #75246c, #75243e, #6e1616);
+    --gradient: radial-gradient(#d98989, #d9b289, #d9d589, #bad989, #89d98c, #89d9c0, #89ced9, #89a8d9, #8c89d9, #b289d9, #d989d5, #d989b6, #d98989);
 }
 
 * {
@@ -17,32 +17,48 @@ html, body {
 body {
     background: var(--gradient);
       background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
+      animation: gradient 30s ease infinite;
       height: 100vh;
 }
   
 @keyframes gradient {
-      0% {
-          background-position: 0% 50%;
-      }
+    0% {
+        background-position: 50% 50%;
+    }
+  
+    12.5% {
+      background-position: 0% 0%;
+    }
   
     25% {
-      background-position: 25% 75%;
+        background-position: 50% 50%;
     }
   
-      50% {
-          background-position: 100% 50%;
-      }
-  
-    75% {
-      background-position: 75% 25%;
+    37.5% {
+      background-position:0% 100%;
     }
   
-      100% {
-          background-position: 0% 50%;
-      }
-}
+    50% {
+        background-position: 50% 50%;
+    }
 
+    62.5% {
+        background-position: 100% 100%;
+    }
+
+    75% {
+        background-position:50% 50%;
+    }
+
+    87.5% {
+        background-position: 100% 0%;
+    }
+
+    100% {
+        background-position: 50% 50%;
+    }
+
+}
 #root {
     width: 100%;
     height: 100%;
@@ -84,12 +100,12 @@ body {
 #toggleMovesListButton {
     width: 100px;
     height: 50px;
-    background: red;
+    background: #5f9e90;
     font-size: 110%;
 }
 
 #toggleMovesListButton:hover {
-    background: darkred;
+    background: #395e56;
     cursor: pointer;
 }
 
@@ -111,4 +127,25 @@ body {
 
 #statusMessage {
     font-size: 45px;
+}
+
+#headerGridCell {
+    padding: 10px;
+    text-align: center;
+    font-size: 60px;
+}
+
+#restartButton {
+    height: 40px;
+    font-size: 30px;
+    background: #bbedf2;
+    outline: none;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#restartButton:hover {
+    background: #79adb3;
+    cursor: pointer;
 }
