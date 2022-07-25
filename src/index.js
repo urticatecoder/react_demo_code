@@ -26,23 +26,26 @@ class Board extends React.Component {
     render() {
         let board;
         return (
-            <div id = "boardWrapper">
-                <div>
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div>
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div>
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
+            <div id = "boardGridSpot">
+                <div id = "boardWrapper">
+                    <div>
+                        {this.renderSquare(0)}
+                        {this.renderSquare(1)}
+                        {this.renderSquare(2)}
+                    </div>
+                    <div>
+                        {this.renderSquare(3)}
+                        {this.renderSquare(4)}
+                        {this.renderSquare(5)}
+                    </div>
+                    <div>
+                        {this.renderSquare(6)}
+                        {this.renderSquare(7)}
+                        {this.renderSquare(8)}
+                    </div>
                 </div>
             </div>
+            
             
         )
     }
@@ -161,21 +164,29 @@ class Game extends React.Component {
         }
 
         return (
-            <div>
+            <div id = "contentWrapper">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
                 <Board 
                     values = {currentBoard}
                     onClick = {(i) => this.handleSquareClick(i)}
                     highlightedSquares = {this.state.highlightedSquares}     
                 />
-                <div>{statusMessage}</div>
-                <div>
-                    <ul>
-                        {timeTravelButtons}
-                    </ul>
-                    <button id = "toggleMovesListButton" onClick = {() => this.setState({reversedMovesList: !this.state.reversedMovesList})}>Reverse moves list</button>
+                <div></div>
+                <div></div>
+                <div id = "buttonsGridCell">
+                    <div id = "statusMessage">{statusMessage}</div>
+                    <div>
+                        <ul id = "timeTravelList">
+                            {timeTravelButtons}
+                        </ul>
+                        <button id = "toggleMovesListButton" onClick = {() => this.setState({reversedMovesList: !this.state.reversedMovesList})}>Reverse moves list</button>
+                    </div>
                 </div>
+                <div></div>
             </div>
-            
         )
     }
 }
